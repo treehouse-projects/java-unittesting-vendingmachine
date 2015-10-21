@@ -4,15 +4,15 @@ package com.teamtreehouse.vending;
 public class VendingMachine {
     private final Notifier notifier;
     private final AbstractChooser chooser;
+    private final Creditor creditor;
     private final Bin[][] bins;
     private int runningSalesTotal;
-    private int currentCredit;
 
     public VendingMachine(Notifier notifier, int rowCount, int columnCount, int maxItemsPerBin) {
         this.notifier = notifier;
         chooser = new AlphaNumericChooser(rowCount, columnCount);
+        creditor = new Creditor();
         runningSalesTotal = 0;
-        currentCredit = 0;
         bins = new Bin[rowCount][columnCount];
         for (int row = 0; row < rowCount; row++) {
             for (int col = 0; col < columnCount; col++) {
@@ -21,24 +21,18 @@ public class VendingMachine {
         }
     }
 
-    public int addMoney(int money) {
-        currentCredit += money;
-        return currentCredit;
+    public void addMoney(int money) {
+        creditor.addFunds(money);
     }
 
     public int refundMoney() {
-        int refundAmount = currentCredit;
-        currentCredit = 0;
-        return refundAmount;
+        return creditor.refund();
     }
 
     public Item vend(String input) throws InvalidLocationException, NotEnoughFundsException {
         Bin bin = binByInput(input);
         int price = bin.getItemPrice();
-        if (currentCredit < price) {
-            throw new NotEnoughFundsException();
-        }
-        currentCredit -= price;
+        creditor.deduct(price);
         runningSalesTotal += price;
         Item item = bin.release();
         notifier.onSale(item);
