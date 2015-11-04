@@ -39,4 +39,9 @@ public class CreditorTest {
 
         assertEquals(0, creditor.getAvailableFunds());
     }
+
+    @Test(expected = NotEnoughFundsException.class)
+    public void deductingMoreMoneyThanAvailableNotAllowed() throws Exception {
+        creditor.deduct(100);
+    }
 }
