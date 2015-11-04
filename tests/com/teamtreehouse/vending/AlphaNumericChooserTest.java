@@ -34,4 +34,9 @@ public class AlphaNumericChooserTest {
     public void choosingLargerThanMaxIsNotAllowed() throws Exception {
         chooser.locationFromInput("B52");
     }
+
+    @Test
+    public void constructingLargerThanAlphabetNotAllowed() throws Exception {
+        new AlphaNumericChooser(27, 10);
+    }
 }
