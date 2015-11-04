@@ -1,4 +1,4 @@
 package com.teamtreehouse.vending;
 
-public class NotEnoughFundsException extends Throwable {
+public class NotEnoughFundsException extends Exception {
 }
