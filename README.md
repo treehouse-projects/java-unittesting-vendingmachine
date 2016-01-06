@@ -1,6 +1,6 @@
-= Treehouse - Unit Testing in Java - Vending Machine
+## Treehouse - Unit Testing in Java - Vending Machine
 
-This repository is meant to accompany the [Unit Testing in Java](https://teamtreehouse.com/library/unit-testing-in-java/upcoming) Treehouse course.
+This repository is meant to accompany the [Unit Testing in Java](https://teamtreehouse.com/library/unit-testing-in-java) Treehouse course.
 
 In this course we will cover, unit testing best practices, as well as cover some Object Oriented design best practices.
 
